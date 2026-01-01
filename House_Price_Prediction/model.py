@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.metrics import r2_score
+import gradio as gr
 
 # 1. Load dataset (download train.csv from Kaggle)
 df = pd.read_csv("dataset/train.csv")
@@ -23,19 +24,39 @@ model.fit(X_train, y_train)
 # 5. Predictions
 y_pred = model.predict(X_test)
 
-# 6. Evaluation
-print("MAE:", mean_absolute_error(y_test, y_pred))
-print("MSE:", mean_squared_error(y_test, y_pred))
-print("RMSE:", np.sqrt(mean_squared_error(y_test, y_pred)))
-print("R² Score:", r2_score(y_test, y_pred))
+## 6. Evaluation
+# R² Score - Think of R² as a marks score for your model
+# Example
+# R² = 1.0 → model is perfect (100/100) , R² = 0.8 → model is good (80/100) , R² = 0.5 → model is average (50/100) ,R² = 0.0 → model is bad (0/100)
+
+print("Model Performance:", round(r2_score(y_test, y_pred) * 100, 2), "%")
 
 # 7. Predict new house price
-new_house = pd.DataFrame([{
-    "GrLivArea": 2000,
-    "TotalBsmtSF": 900,
-    "OverallQual": 7,
-    "YearBuilt": 2005
-}])
 
-price = model.predict(new_house)
-print("Predicted Price:", price[0])
+def predict_price(gr_liv_area, total_bsmt_sf, overall_qual, year_built):
+    new_house = pd.DataFrame([{
+        "GrLivArea": gr_liv_area,
+        "TotalBsmtSF": total_bsmt_sf,
+        "OverallQual": overall_qual,
+        "YearBuilt": year_built
+    }])
+
+    price = model.predict(new_house)
+    return round(price[0], 2)
+
+# 8. Gradio Interface
+
+interface = gr.Interface(
+    fn=predict_price,
+    inputs=[
+        gr.Number(label="Living Area (sq ft)"),
+        gr.Number(label="Basement Area (sq ft)"),
+        gr.Slider(1, 10, step=1, label="Overall Quality"),
+        gr.Number(label="Year Built")
+    ],
+    outputs=gr.Number(label="Predicted House Price (USD)"),
+    title="House Price Prediction",
+    description="Enter house details to predict the price"
+)
+
+interface.launch()
