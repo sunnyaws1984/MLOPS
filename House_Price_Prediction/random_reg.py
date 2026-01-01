@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
 import gradio as gr
 
@@ -18,16 +19,17 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # 4. Create & train model
-model = LinearRegression()
+model = RandomForestRegressor(
+    n_estimators=100,   # Number of trees
+    random_state=42     
+)
+
 model.fit(X_train, y_train)
 
 # 5. Predictions
 y_pred = model.predict(X_test)
 
-## 6. Evaluation
-# R² Score - Think of R² as a marks score for your model
-# Example
-# R² = 1.0 → model is perfect (100/100) , R² = 0.8 → model is good (80/100) , R² = 0.5 → model is average (50/100) ,R² = 0.0 → model is bad (0/100)
+# 6. Evaluation
 
 print("Model Performance:", round(r2_score(y_test, y_pred) * 100, 2), "%")
 
