@@ -45,7 +45,7 @@ with mlflow.start_run():
     mlflow.log_metric("r2_score", r2)
 
     # Log the model
-    mlflow.sklearn.log_model(model, "random_forest_model")
+    mlflow.sklearn.log_model(model, "houese_price_model")
 
 # -------------------------
 # 3. Load model back from MLflow (optional, safe)
