@@ -4,7 +4,7 @@ Sample House Predictions using Machine Learning
 Below are the steps to perform:
 
 1) Setup a Virtual env.
-2) pip install pandas numpy scikit-learn gradio
+2) pip install pandas numpy scikit-learn gradio mlflow
 3) python model.py
 
 You’ll get a web UI like:

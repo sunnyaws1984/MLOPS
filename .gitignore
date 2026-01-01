@@ -1,1 +1,3 @@
 .venv
+House_Price_Prediction/__pycache__/
+House_Price_Prediction/mlruns/
