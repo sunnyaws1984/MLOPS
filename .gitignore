@@ -1,3 +1,14 @@
 .venv
 House_Price_Prediction/__pycache__/
 House_Price_Prediction/mlruns/
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints
+.vscode/
+.env
+logs/
+*.log
+data/
+House_Price_Prediction_MLFlow/mlruns/
+House_Price_Prediction_MLFLOW\mlflow.db
