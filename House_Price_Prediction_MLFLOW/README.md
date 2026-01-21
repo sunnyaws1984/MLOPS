@@ -37,7 +37,7 @@ backend-store-uri: database to track experiments
 default-artifact-root: S3 bucket to store models/artifacts
 host and port: where the server runs
 
-## Dockerize the Application
+## Run this locally
 ```bash
 python train_and_log_model.py 
 export RUN_ID=<GET_RUN_ID_FROM_ABOVE>
