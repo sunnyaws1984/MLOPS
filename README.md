@@ -27,6 +27,14 @@ It uses a single formula to predict outputs:
 
 Price = (w1 × Feature1) + (w2 × Feature2) + … + b
 The model learns weights (w1, w2, …) and a base (b) from the training data
+eg:
+Price =
+  (a × GrLivArea)
++ (b × TotalBsmtSF)
++ (c × OverallQual)
++ (d × YearBuilt)
++ base price
+
 Each feature contributes proportionally to the prediction
 Predictions are a linear combination of features
 Works best when the relationship between inputs and output is roughly straight-line
