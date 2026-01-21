@@ -42,7 +42,7 @@ def predict_price(gr_liv_area, total_bsmt_sf, overall_qual, year_built):
     }])
 
     price = model.predict(new_house)
-    return round(price[0], 2)
+    return round(price[0], 2) 
 
 # 8. Gradio Interface
 
