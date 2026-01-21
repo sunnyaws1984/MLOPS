@@ -8,8 +8,8 @@ RUN_ID = os.getenv("RUN_ID")
 if not RUN_ID:
     raise ValueError("RUN_ID environment variable is required")
 
-MODEL_URI = f"runs:/{RUN_ID}/house_price_model"
-model = mlflow.sklearn.load_model(MODEL_URI)
+MODEL_URI = f"runs:/{RUN_ID}/house_price_model"  #Constructs the model URI using the provided RUN_ID.
+model = mlflow.sklearn.load_model(MODEL_URI) # Loads the model from MLflow using the specified URI.
 
 def predict_price(gr_liv_area, total_bsmt_sf, overall_qual, year_built):
     df = pd.DataFrame([{

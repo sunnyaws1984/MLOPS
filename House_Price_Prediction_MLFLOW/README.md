@@ -26,6 +26,17 @@ Artifact store can change (local → S3)
 Backend DB can change (SQLite → Postgres)
 Your code never change
 
+## Hosting Centralized MLFLOW Server
+
+mlflow server \
+    --backend-store-uri postgresql://username:password@hostname:5432/mlflow_db \
+    --default-artifact-root s3://mlflow-artifacts/ \
+    --host 0.0.0.0 --port 5000
+
+backend-store-uri: database to track experiments
+default-artifact-root: S3 bucket to store models/artifacts
+host and port: where the server runs
+
 ## Dockerize the Application
 ```bash
 python train_and_log_model.py 
